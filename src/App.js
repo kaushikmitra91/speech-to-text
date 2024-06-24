@@ -1,23 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
+import "./App.css";
+import microphone from "./microphone.svg";
 
 function App() {
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+    browserSupportsContinuousListening,
+  } = useSpeechRecognition();
+
+  const [isListening, setIsListening] = useState(false);
+
+  if (!browserSupportsSpeechRecognition) {
+    return <span>Browser doesn't support speech recognition.</span>;
+  }
+  const stopListeningHandler = () => {
+    if (browserSupportsContinuousListening) {
+      SpeechRecognition.startListening({ continuous: false });
+    }
+    SpeechRecognition.stopListening();
+  };
+
+  const startListeningHandler = () => {
+      if (browserSupportsContinuousListening) {
+        SpeechRecognition.startListening({ continuous: true });
+      }
+      SpeechRecognition.startListening();
+  };
+
+  const buttonHandler = ()=>{
+    if(!isListening){
+      startListeningHandler();
+    }else{
+      stopListeningHandler();
+    }
+    setIsListening(!isListening);
+  }
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <p>Microphone: {listening ? "on" : "off"}</p>
+        <button onClick={buttonHandler}>
+          <img width={50} height={50} src={microphone} alt="microphone" />
+        </button>
+
+        {/* <button onClick={resetTranscript}>Reset</button> */}
+        <p>{transcript}</p>
+      </div>
     </div>
   );
 }
