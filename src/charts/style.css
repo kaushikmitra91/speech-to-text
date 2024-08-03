@@ -1,14 +1,25 @@
+.container .chartTitle {
+    font-weight: 700;
+    font-size: 2rem;
+    margin: 2rem;
+}
+
 .chartOptions {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: 20px;
+    margin: 0 20px;
 }
 
 .chartOptions .option {
     height: auto;
     border: 1px solid blue;
     padding: .5rem;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
+}
+
+#doughnut-container svg{
+margin : 10px;
 }

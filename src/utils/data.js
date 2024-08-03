@@ -17,8 +17,8 @@ export const doughnutData = [
     { name: "Bangladesh", value: 171_186_372 },
     { name: "Russia", value: 144_236_933 },
     { name: "Mexico", value: 127_504_125 },
-    { name: "Japan", value: 125_124_989 },
-    { name: "Ethiopia", value: 123_379_924 },
+    // { name: "Japan", value: 125_124_989 },
+    // { name: "Ethiopia", value: 123_379_924 },
   ];
 
   export const pieChartData = [

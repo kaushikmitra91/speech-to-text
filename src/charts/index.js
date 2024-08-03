@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import * as d3 from "d3";
 import PieChart from "./piechart";
 import DoughnutChart from "./doughnut";
@@ -7,7 +7,28 @@ import WorldMap from "./worldmap/worldmap";
 import { barchartData } from "../utils/data";
 import "./style.css";
 
+const ChartMenuItems = (props) => {
+  const { chartSelectionHandler } = props;
+  return (
+    <div className="chartOptions">
+      <div className="option" onClick={() => chartSelectionHandler("pie")}>
+        Pie chart
+      </div>
+      <div className="option" onClick={() => chartSelectionHandler("doughnut")}>
+        Doughnut chart
+      </div>
+      <div className="option" onClick={() => chartSelectionHandler("bar")}>
+        Bar chart
+      </div>
+      <div className="option" onClick={() => chartSelectionHandler("worldMap")}>
+        World map
+      </div>
+    </div>
+  );
+};
+
 const Charts = () => {
+  const refContainer = useRef();
   const [worldPopulation, setWorldPopulation] = useState(null);
   const [topography, setTopography] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -19,7 +40,7 @@ const Charts = () => {
   };
 
   const [visibility, setVisibility] = useState(chartMenuState);
-
+  const [containerWidth, setContainerWidth] = useState(320);
   const getData = async () => {
     setLoading(true);
 
@@ -60,46 +81,31 @@ const Charts = () => {
 
   useEffect(() => {
     getData();
+    if (refContainer.current) {
+      setContainerWidth(refContainer.current.offsetWidth);
+    }
   }, []);
-  if (loading) return <div>Loading...</div>;
+
   return (
-    <div className="container">
-      <div className="chartOptions">
-        <div className="option" onClick={() => chartSelectionHandler("pie")}>
-          Pie chart
-        </div>
-        <div
-          className="option"
-          onClick={() => chartSelectionHandler("doughnut")}
-        >
-          Doughnut chart
-        </div>
-        <div className="option" onClick={() => chartSelectionHandler("bar")}>
-          Bar chart
-        </div>
-        <div
-          className="option"
-          onClick={() => chartSelectionHandler("worldMap")}
-        >
-          World map
-        </div>
-      </div>
+    <div className="container" ref={refContainer}>
+        <div className="chartTitle">World Population</div>
+      <ChartMenuItems chartSelectionHandler={chartSelectionHandler} />
       {visibility?.pie && (
-        <PieChart data={barchartData} width={500} height={500} />
-      )}
-      {visibility?.doughnut && (
-        <DoughnutChart
+        <PieChart
           data={barchartData}
-          innerRadius={120}
-          outerRadius={200}
+          width={containerWidth}
+          height={containerWidth}
         />
       )}
+      {visibility?.doughnut && (
+        <DoughnutChart data={barchartData} innerRadius={80} outerRadius={160} />
+      )}
       {visibility?.bar && (
-        <BarChart data={barchartData} width={500} height={600} />
+        <BarChart data={barchartData} width={containerWidth} height={400} />
       )}
       {worldPopulation && topography && visibility.worldMap && (
         <WorldMap
-          width={550}
+          width={containerWidth - 10}
           height={450}
           data={{ worldPopulation, topography }}
         />

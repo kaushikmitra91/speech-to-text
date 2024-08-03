@@ -1,5 +1,6 @@
 import  { useEffect } from 'react';
 import * as d3 from 'd3';
+import "./style.css";
 
 function DoughnutChart(props) {
   const {
@@ -10,7 +11,7 @@ function DoughnutChart(props) {
   
 
   const margin = {
-    top: 50, right: 50, bottom: 50, left: 50,
+    top: 50, right: 20, bottom: 50, left: 20,
   };
 
   const width = 2 * outerRadius + margin.left + margin.right;

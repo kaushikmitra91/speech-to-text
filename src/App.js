@@ -6,6 +6,7 @@ import "./App.css";
 import Charts from "./charts";
 import Outlook from "./outlook";
 import { ChartIcon, Microphone, Calendar, MicrophoneOff } from "./svg/index";
+import Slider from './carousel'
 
 function App() {
   const {
@@ -68,7 +69,8 @@ function App() {
     <div className="applicationWrapper">
       <header></header>
       <main>
-        {visibility?.microphone && (
+        {visibility?.microphone && (<div className="microphoneWrapper">
+        <Slider />
           <div className="container">
             <p>Microphone: {listening ? "on" : "off"}</p>
             {/* <button onClick={resetTranscript}>Reset</button> */}
@@ -79,19 +81,25 @@ function App() {
               </div>
             </div>
           </div>
+          </div>
         )}
         {visibility?.chart && <Charts />}
         {visibility?.outlook && <Outlook />}
       </main>
-      <footer className="footer">
-        <div onClick={() => onMenuClickHandler("microphone")}>
-          <Microphone />
-        </div>
-        <div onClick={() => onMenuClickHandler("chart")}>
-          <ChartIcon />
-        </div>
-        <div onClick={() => onMenuClickHandler("outlook")}>
-          <Calendar />
+      <footer className="footerHolder">
+        <div className="footer">
+          <div
+            className="option"
+            onClick={() => onMenuClickHandler("microphone")}
+          >
+            <Microphone />
+          </div>
+          <div className="option" onClick={() => onMenuClickHandler("chart")}>
+            <ChartIcon />
+          </div>
+          <div className="option" onClick={() => onMenuClickHandler("outlook")}>
+            <Calendar />
+          </div>
         </div>
       </footer>
     </div>
