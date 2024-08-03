@@ -6,7 +6,7 @@
 }
 
 .chartOptions .option {
-    height: 24px;
+    height: auto;
     border: 1px solid blue;
     padding: .5rem;
     border-radius: 5px;
