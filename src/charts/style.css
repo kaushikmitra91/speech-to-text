@@ -1,0 +1,14 @@
+.chartOptions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.chartOptions .option {
+    height: 24px;
+    border: 1px solid blue;
+    padding: .5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}

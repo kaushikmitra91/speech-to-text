@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import "./App.css";
-import microphone from "./microphone.svg";
+import Charts from "./charts";
+import Outlook from "./outlook";
+import { ChartIcon, Microphone, Calendar, MicrophoneOff } from "./svg/index";
 
 function App() {
   const {
@@ -14,11 +16,15 @@ function App() {
     browserSupportsContinuousListening,
   } = useSpeechRecognition();
 
-  const [isListening, setIsListening] = useState(false);
+  const footerMenuState = {
+    microphone: true,
+    chart: false,
+    outlook: false,
+  };
 
-  if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
-  }
+  const [visibility, setVisibility] = useState(footerMenuState);
+
+  const [isListening, setIsListening] = useState(false);
   const stopListeningHandler = () => {
     if (browserSupportsContinuousListening) {
       SpeechRecognition.startListening({ continuous: false });
@@ -27,32 +33,67 @@ function App() {
   };
 
   const startListeningHandler = () => {
-      if (browserSupportsContinuousListening) {
-        SpeechRecognition.startListening({ continuous: true });
-      }
-      SpeechRecognition.startListening();
+    if (browserSupportsContinuousListening) {
+      SpeechRecognition.startListening({ continuous: true });
+    }
+    SpeechRecognition.startListening();
   };
 
-  const buttonHandler = ()=>{
-    if(!isListening){
+  const buttonHandler = () => {
+    if (!isListening) {
       startListeningHandler();
-    }else{
+    } else {
       stopListeningHandler();
     }
     setIsListening(!isListening);
-  }
-  
-  return (
-    <div className="App">
-      <div>
-        <p>Microphone: {listening ? "on" : "off"}</p>
-        <button onClick={buttonHandler}>
-          <img width={50} height={50} src={microphone} alt="microphone" />
-        </button>
+  };
 
-        {/* <button onClick={resetTranscript}>Reset</button> */}
-        <p>{transcript}</p>
-      </div>
+  const onMenuClickHandler = (menu) => {
+    const temp = { ...footerMenuState };
+    for (const options in temp) {
+      if (options === menu) {
+        temp[options] = true;
+      } else {
+        temp[options] = false;
+      }
+    }
+    setVisibility(temp);
+  };
+
+  if (!browserSupportsSpeechRecognition) {
+    return <span>Browser doesn't support speech recognition.</span>;
+  }
+
+  return (
+    <div className="applicationWrapper">
+      <header></header>
+      <main>
+        {visibility?.microphone && (
+          <div className="container">
+            <p>Microphone: {listening ? "on" : "off"}</p>
+            {/* <button onClick={resetTranscript}>Reset</button> */}
+            <div>
+              <div>{transcript}</div>
+              <div onClick={buttonHandler}>
+                {listening ? <Microphone /> : <MicrophoneOff />}
+              </div>
+            </div>
+          </div>
+        )}
+        {visibility?.chart && <Charts />}
+        {visibility?.outlook && <Outlook />}
+      </main>
+      <footer className="footer">
+        <div onClick={() => onMenuClickHandler("microphone")}>
+          <Microphone />
+        </div>
+        <div onClick={() => onMenuClickHandler("chart")}>
+          <ChartIcon />
+        </div>
+        <div onClick={() => onMenuClickHandler("outlook")}>
+          <Calendar />
+        </div>
+      </footer>
     </div>
   );
 }
