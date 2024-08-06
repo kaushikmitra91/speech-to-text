@@ -6,7 +6,9 @@ import "./App.css";
 import Charts from "./charts";
 import Outlook from "./outlook";
 import { ChartIcon, Microphone, Calendar, MicrophoneOff } from "./svg/index";
-import Slider from './carousel'
+import Slider from "./carousel";
+import { SpeechRecognition as MobileSpeechRecognition } from "@capacitor-community/speech-recognition";
+import { isMobile } from "react-device-detect";
 
 function App() {
   const {
@@ -26,6 +28,28 @@ function App() {
   const [visibility, setVisibility] = useState(footerMenuState);
 
   const [isListening, setIsListening] = useState(false);
+  const [text, setText]=useState(''); 
+
+  const mobileSpeechStart = async () => {
+    // const {available} = await MobileSpeechRecognition.available();
+    // if (available) {
+    //   MobileSpeechRecognition.start({
+    //     language: "en-US",
+    //     partialResults: true,
+    //     popup: false,
+    //   });
+    //   MobileSpeechRecognition.addListener('partialResults',(data)=>{
+    //     if(data?.matches?.length){
+    //       setText(data.matches[0])
+    //     }
+    //   })
+    // }
+  };
+
+  const mobileSpeechStop = async () => {
+    //await MobileSpeechRecognition.stop();
+  };
+
   const stopListeningHandler = () => {
     if (browserSupportsContinuousListening) {
       SpeechRecognition.startListening({ continuous: false });
@@ -34,10 +58,10 @@ function App() {
   };
 
   const startListeningHandler = () => {
-    if (browserSupportsContinuousListening) {
-      SpeechRecognition.startListening({ continuous: true });
-    }
-    SpeechRecognition.startListening();
+      if (browserSupportsContinuousListening) {
+        SpeechRecognition.startListening({ continuous: true });
+      }
+      SpeechRecognition.startListening();
   };
 
   const buttonHandler = () => {
@@ -61,6 +85,11 @@ function App() {
     setVisibility(temp);
   };
 
+  // useEffect(() => {
+  //   if(isMobile)
+  //   MobileSpeechRecognition.requestPermissions(); 
+  // }, []);
+
   if (!browserSupportsSpeechRecognition) {
     return <span>Browser doesn't support speech recognition.</span>;
   }
@@ -69,18 +98,20 @@ function App() {
     <div className="applicationWrapper">
       <header></header>
       <main>
-        {visibility?.microphone && (<div className="microphoneWrapper">
-        <Slider />
-          <div className="container">
-            <p>Microphone: {listening ? "on" : "off"}</p>
-            {/* <button onClick={resetTranscript}>Reset</button> */}
-            <div>
-              <div>{transcript}</div>
-              <div onClick={buttonHandler}>
-                {listening ? <Microphone /> : <MicrophoneOff />}
+        {visibility?.microphone && (
+          <div className="microphoneWrapper">
+            <Slider />
+            <div className="container">
+              <p>Microphone: {listening ? "on" : "off"}</p>
+              {/* <button onClick={resetTranscript}>Reset</button> */}
+              <div>
+                <div>{transcript}</div>
+                {/* {text && <div>{text}</div>} */}
+                <div onClick={buttonHandler}>
+                  {listening ? <Microphone /> : <MicrophoneOff />}
+                </div>
               </div>
             </div>
-          </div>
           </div>
         )}
         {visibility?.chart && <Charts />}
