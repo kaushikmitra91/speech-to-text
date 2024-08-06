@@ -60,8 +60,9 @@ function App() {
   const startListeningHandler = () => {
       if (browserSupportsContinuousListening) {
         SpeechRecognition.startListening({ continuous: true });
+      }else{
+        SpeechRecognition.startListening();
       }
-      SpeechRecognition.startListening();
   };
 
   const buttonHandler = () => {
