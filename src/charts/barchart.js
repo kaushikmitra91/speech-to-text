@@ -43,7 +43,7 @@ const BarChart = ({ width, height, data }) => {
   }, [xAxis, yAxis]);
 
   return (
-    <div className="container">
+    <div className="chartContainer">
       <svg
         width={width}
         height={height}

@@ -78,7 +78,7 @@ function DoughnutChart(props) {
       });
   }    
 
-  return <div id="doughnut-container" />;
+  return <div className='chartContainer' id="doughnut-container" />;
 }
 
 export default DoughnutChart;

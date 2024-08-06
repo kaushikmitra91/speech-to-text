@@ -8,19 +8,19 @@ import { barchartData } from "../utils/data";
 import "./style.css";
 
 const ChartMenuItems = (props) => {
-  const { chartSelectionHandler } = props;
+  const { chartSelectionHandler, visibility } = props;
   return (
     <div className="chartOptions">
-      <div className="option" onClick={() => chartSelectionHandler("pie")}>
+      <div className="option" aria-selected={visibility?.pie} onClick={() => chartSelectionHandler("pie")}>
         Pie chart
       </div>
-      <div className="option" onClick={() => chartSelectionHandler("doughnut")}>
+      <div className="option" aria-selected={visibility?.doughnut} onClick={() => chartSelectionHandler("doughnut")}>
         Doughnut chart
       </div>
-      <div className="option" onClick={() => chartSelectionHandler("bar")}>
+      <div className="option" aria-selected={visibility?.bar} onClick={() => chartSelectionHandler("bar")}>
         Bar chart
       </div>
-      <div className="option" onClick={() => chartSelectionHandler("worldMap")}>
+      <div className="option" aria-selected={visibility?.worldMap} onClick={() => chartSelectionHandler("worldMap")}>
         World map
       </div>
     </div>
@@ -36,7 +36,7 @@ const Charts = () => {
     pie: false,
     doughnut: false,
     bar: false,
-    worldMap: false,
+    worldMap: true,
   };
 
   const [visibility, setVisibility] = useState(chartMenuState);
@@ -88,8 +88,7 @@ const Charts = () => {
 
   return (
     <div className="container" ref={refContainer}>
-        <div className="chartTitle">World Population</div>
-      <ChartMenuItems chartSelectionHandler={chartSelectionHandler} />
+       
       {visibility?.pie && (
         <PieChart
           data={barchartData}
@@ -110,6 +109,10 @@ const Charts = () => {
           data={{ worldPopulation, topography }}
         />
       )}
+
+      
+      <ChartMenuItems visibility={visibility} chartSelectionHandler={chartSelectionHandler} />
+      <h1 className="pageTitle">World Population</h1>
     </div>
   );
 };

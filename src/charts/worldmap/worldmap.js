@@ -63,7 +63,7 @@ const WorldMap = ({ width, height, data }) => {
   }, [zoom]);
 
   return (
-    <div className="container">
+    <div className="chartContainer">
       <svg
         ref={chartRef}
         className="viz"

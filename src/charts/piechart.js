@@ -42,7 +42,7 @@ const PieChart = ({ width, height, data }) => {
   const arcs = pie(data);
 
   return (
-    <div className="container">
+    <div className="chartContainer">
       <svg
         width={width}
         height={height}
