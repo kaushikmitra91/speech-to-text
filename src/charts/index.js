@@ -3,8 +3,10 @@ import * as d3 from "d3";
 import PieChart from "./piechart";
 import DoughnutChart from "./doughnut";
 import BarChart from "./barchart";
+import BarChartWidget from "./barchartWidget";
 import WorldMap from "./worldmap/worldmap";
 import { barchartData } from "../utils/data";
+import { barchartData2 } from "../utils/data";
 import "./style.css";
 
 const ChartMenuItems = (props) => {
@@ -113,6 +115,8 @@ const Charts = () => {
       
       <ChartMenuItems visibility={visibility} chartSelectionHandler={chartSelectionHandler} />
       <h1 className="pageTitle">World Population</h1>
+
+      <BarChartWidget data={barchartData2} width={containerWidth} height={400}/>
     </div>
   );
 };

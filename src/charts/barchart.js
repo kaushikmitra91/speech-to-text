@@ -58,7 +58,7 @@ const BarChart = ({ width, height, data }) => {
               y={yScale(d.value / oneMillion)}
               height={chartBottomY - yScale(d.value / oneMillion)}
               width={xScale.bandwidth()}
-              fill="#6baed6"
+              fill="#4292c6"
             />
           ))}
         </g>
@@ -69,7 +69,7 @@ const BarChart = ({ width, height, data }) => {
               x={xScale(d.name) + xScale.bandwidth() / 2}
               y={yScale(d.value / oneMillion) - 5}
               textAnchor="middle"
-              fontSize={14}
+              fontSize={8}
             >
               {Number((d.value / oneMillion).toFixed(1)).toLocaleString()}
             </text>

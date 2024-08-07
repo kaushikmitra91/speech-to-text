@@ -20,6 +20,34 @@ export const doughnutData = [
     // { name: "Japan", value: 125_124_989 },
     // { name: "Ethiopia", value: 123_379_924 },
   ];
+  export const barchartData2 = [
+    // { name: "India", value: 333_287_557 },
+    { name: "China", value: 171_186_372 },
+    // { name: "United States", value: 333_287_557 },
+    { name: "Indonesia", value: 275_501_339 },
+    { name: "Pakistan", value: 235_824_862 },
+    { name: "Nigeria", value: 218_541_212 },
+    { name: "Brazil", value: 215_313_498 },
+    { name: "Bangladesh", value: 171_186_372 },
+    { name: "Russia", value: 144_236_933 },
+    { name: "Mexico", value: 127_504_125 },
+    { name: "Japan", value: 125_124_989 },
+    { name: "Ethiopia", value: 123_379_924 },
+    { name: "Indonesia", value: 275_501_339 },
+    { name: "Pakistan", value: 235_824_862 },
+    { name: "Nigeria", value: 218_541_212 },
+    { name: "Brazil", value: 215_313_498 },
+    { name: "Bangladesh", value: 171_186_372 },
+    { name: "Russia", value: 144_236_933 },
+    { name: "Mexico", value: 127_504_125 },
+    { name: "Japan", value: 125_124_989 },
+    { name: "Ethiopia", value: 123_379_924 },
+    { name: "Indonesia", value: 275_501_339 },
+    { name: "Pakistan", value: 235_824_862 },
+    { name: "Nigeria", value: 218_541_212 },
+    { name: "Brazil", value: 215_313_498 },
+    
+  ];
 
   export const pieChartData = [
     { name: "Christians", value: 2_173_180_000 },

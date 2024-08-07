@@ -10,6 +10,7 @@ import { ChartIcon, Microphone, Calendar, MicrophoneOff } from "./svg/index";
 import Slider from "./carousel";
 import { SpeechRecognition as MobileSpeechRecognition } from "@capacitor-community/speech-recognition";
 import { isMobile } from "react-device-detect";
+import gif from './Voice-Command.gif' 
 
 function App() {
   const {
@@ -119,7 +120,8 @@ function App() {
         {visibility?.microphone && (<div className="microphoneWrapper">
        
           <div className="container">
-            <h1 className="pageTitle">Speech to Text</h1>
+         
+            <h1 className="pageTitle"> <img src={gif}></img>Speech to Text</h1>
           <Slider />
             <div className="mic-wrapper">
            
