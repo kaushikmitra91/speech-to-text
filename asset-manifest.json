@@ -1,20 +1,21 @@
 {
   "files": {
-    "main.css": "/speech-to-text/static/css/main.80ba6b79.css",
-    "main.js": "/speech-to-text/static/js/main.531a3700.js",
+    "main.css": "/speech-to-text/static/css/main.64008743.css",
+    "main.js": "/speech-to-text/static/js/main.ca5625c8.js",
     "static/js/940.55c5c25e.chunk.js": "/speech-to-text/static/js/940.55c5c25e.chunk.js",
     "static/js/453.056d4d4d.chunk.js": "/speech-to-text/static/js/453.056d4d4d.chunk.js",
+    "static/media/Voice-Command.gif": "/speech-to-text/static/media/Voice-Command.49ab017027d12378426a.gif",
     "static/media/revicons.eot": "/speech-to-text/static/media/revicons.a77de540a38981833f9e.eot",
     "static/media/revicons.ttf": "/speech-to-text/static/media/revicons.57fd05d4ae650374c8de.ttf",
     "static/media/revicons.woff": "/speech-to-text/static/media/revicons.e8746a624ed098489406.woff",
     "index.html": "/speech-to-text/index.html",
-    "main.80ba6b79.css.map": "/speech-to-text/static/css/main.80ba6b79.css.map",
-    "main.531a3700.js.map": "/speech-to-text/static/js/main.531a3700.js.map",
+    "main.64008743.css.map": "/speech-to-text/static/css/main.64008743.css.map",
+    "main.ca5625c8.js.map": "/speech-to-text/static/js/main.ca5625c8.js.map",
     "940.55c5c25e.chunk.js.map": "/speech-to-text/static/js/940.55c5c25e.chunk.js.map",
     "453.056d4d4d.chunk.js.map": "/speech-to-text/static/js/453.056d4d4d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.80ba6b79.css",
-    "static/js/main.531a3700.js"
+    "static/css/main.64008743.css",
+    "static/js/main.ca5625c8.js"
   ]
 }
